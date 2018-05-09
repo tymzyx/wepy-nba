@@ -1,0 +1,15 @@
+{
+	"description": "A WePY project",
+	"setting": {
+		"urlCheck": true,
+		"es6": false,
+		"postcss": false,
+		"minified": false,
+		"newFeature": true
+	},
+	"compileType": "miniprogram",
+	"appid": "wxc82a4588ef3516c8",
+	"projectname": "wepy-nba-info",
+	"miniprogramRoot": "./dist",
+	"condition": {}
+}

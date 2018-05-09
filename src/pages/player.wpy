@@ -1,0 +1,200 @@
+<template>
+  <view class="player-wrapper">
+    <image class="img-bg" src="../assets/img/bg.jpg" background-size="cover"/>
+    <view class="player-main">
+      <image class="img-avatar" src="../assets/img/od.png" mode="aspectFill"/>
+      <view class="player-info-wrapper">
+        <text class="player-name">维克多·奥拉迪波</text>
+        <view class="base-info">
+          <view class="base-info-text">
+            <i class="iconfont icon-location"></i>
+            <text> country：{{baseInfo.country}}</text>
+          </view>
+          <view class="base-info-text">
+            <i class="iconfont icon-iconsg"></i>
+            <text> height：{{baseInfo.height}}</text>
+          </view>
+          <view class="base-info-text">
+            <i class="iconfont icon-cake"></i>
+            <text> birth：{{baseInfo.birth}}</text>
+          </view>
+          <view class="base-info-text">
+            <i class="iconfont icon-icontz"></i>
+            <text> weight：{{baseInfo.weight}}</text>
+          </view>
+          <view class="base-info-text">
+            <i class="iconfont icon-icon_calendar_fill"></i>
+            <text> age：{{baseInfo.age}}</text>
+          </view>
+          <view class="base-info-text">
+            <i class="iconfont icon-xiaolianwawa"></i>
+            <text> nickName：{{baseInfo.nickName}}</text>
+          </view>
+        </view>
+        <view class="career-info">
+          <repeat for="{{careerInfo}}" key="index" index="index" item="item">
+            <view class="career-info-item">
+              <text class="top">{{item.count}}</text>
+              <text class="bottom">{{item.text}}</text>
+            </view>
+          </repeat>
+        </view>
+        <view class="play-info">
+          <view>
+            <i class="iconfont icon-team"></i>
+            <text> 所属球队：印第安纳步行者队</text>
+          </view>
+          <view>
+            <i class="iconfont icon-tubiao-"></i>
+            <text> 球衣号码：4号</text>
+          </view>
+          <view>
+            <i class="iconfont icon-iosbasketball"></i>
+            <text> 场上位置：后卫</text>
+          </view>
+          <view>
+            <i class="iconfont icon-2xuanzhong"></i>
+            <text> NBA选秀： 2013年第一轮第2位被魔术队选中</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  let baseInfo = {
+    country: '美国',
+    height: '1.93米',
+    birth: '1992年5月4日',
+    weight: '95公斤',
+    nickName: '奥迪',
+    age: '26',
+  };
+  let careerInfo = [
+    {text: '得分', count: '17.4'},
+    {text: '篮板', count: '4.5'},
+    {text: '助攻', count: '3.8'},
+    {text: '抢断', count: '1.7'}
+  ];
+
+  class Player extends wepy.page {
+    config = {
+      navigationBarTitleText: 'PLAYER'
+    }
+
+    data = {
+      text: 'player page',
+      baseInfo: baseInfo,
+      careerInfo: careerInfo
+    }
+  }
+
+  export default Player;
+</script>
+
+<style lang="less">
+  @special-color: #696969;
+
+  .player-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000130;
+
+    .img-bg {
+      width: 749rpx;
+      height: 260rpx;
+    }
+
+    .player-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .img-avatar {
+        position: absolute;
+        top: 150rpx;
+        width: 220rpx;
+        height: 220rpx;
+        border-radius: 110rpx;
+        background: #fee;
+      }
+      .player-info-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 750rpx;
+        padding-top: 100rpx;
+
+        .player-name {
+          font-size: 15px;
+          font-weight: bold;
+          padding:26rpx 0;
+        }
+
+        .base-info {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: space-between;
+        }
+        .base-info-text {
+          width: 370rpx;
+          font-size: 13px;
+          padding: 20rpx 0 20rpx 10rpx;
+          box-sizing: border-box;
+
+          i {
+            color: @special-color;
+            font-size: 14px;
+          }
+        }
+
+        .career-info {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+        .career-info-item {
+          width: 260rpx;
+          height: 240rpx;
+          margin: 10rpx 40rpx;
+          border-top-left-radius: 50% 30rpx;
+          border-top-right-radius: 50% 30rpx;
+          border-bottom-left-radius: 50% 30rpx;
+          border-bottom-right-radius: 50% 30rpx;
+          background: linear-gradient(to bottom,#F5FFFA,#F2F2F2);
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          color: @special-color;
+
+          .top {
+            font-size: 28px;
+            font-weight: 900;
+          }
+          .bottom {
+            font-size: 13px;
+          }
+        }
+
+        .play-info {
+          margin-top: 40rpx;
+          display: flex;
+          flex-direction: column;
+
+          view {
+            font-size: 13px;
+            padding: 16rpx 0;
+          }
+          i {
+            color: @special-color;
+          }
+        }
+      }
+    }
+  }
+</style>
