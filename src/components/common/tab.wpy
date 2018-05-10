@@ -1,0 +1,77 @@
+<template>
+  <view class="tab-wrapper">
+    <view class="tab-item {{0 === isActive ? 'tab-item-active' : ''}}" @tap="changePage(0)">
+      <i class="iconfont icon-tubiao-"></i>
+      <text>赛事</text>
+    </view>
+    <view class="tab-item {{1 === isActive ? 'tab-item-active' : ''}}" @tap="changePage(1)">
+      <i class="iconfont icon-tubiao-"></i>
+      <text>球员</text>
+    </view>
+    <view class="tab-item {{2 === isActive ? 'tab-item-active' : ''}}" @tap="changePage(2)">
+      <i class="iconfont icon-tubiao-"></i>
+      <text>我的</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  class Tab extends wepy.component {
+    components = {};
+
+    data = {
+      isActive: 0
+    };
+
+    methods = {
+      changePage(index) {
+        console.log('index: ', index);
+        this.isActive = parseInt(index);
+        switch (index) {
+          case '0':
+            this.$root.$navigate({url: 'player'});
+            break;
+          case '1':
+            this.$root.$navigate({url: 'index'});
+            break;
+        }
+      }
+    };
+
+    events = {};
+  }
+
+  export default Tab;
+</script>
+
+<style lang="less">
+  .tab-wrapper {
+    position: fixed;
+    bottom: 0;
+    width: 750rpx;
+    height: 110rpx;
+    background: #fefefe;
+    border-top: 1px solid #ddd;
+    z-index: 10;
+    display: flex;
+
+    .tab-item {
+      width: 250rpx;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-size: 11px;
+      color: #999;
+
+      i {
+        font-size: 26px;
+      }
+    }
+    .tab-item-active {
+      color: orange;
+    }
+  }
+</style>

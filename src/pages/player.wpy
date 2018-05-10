@@ -4,7 +4,10 @@
     <view class="player-main">
       <image class="img-avatar" src="../assets/img/od.png" mode="aspectFill"/>
       <view class="player-info-wrapper">
-        <text class="player-name">维克多·奥拉迪波</text>
+        <view class="player-name">
+          <text>维克多·奥拉迪波 </text>
+          <i class="iconfont icon-xihuan {{isLike ? 'i-like' : ''}}" @tap="changeIsLike"></i>
+        </view>
         <view class="base-info">
           <view class="base-info-text">
             <i class="iconfont icon-location"></i>
@@ -59,11 +62,13 @@
         </view>
       </view>
     </view>
+    <myTab></myTab>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import Tab from '../components/common/tab'
 
   let baseInfo = {
     country: '美国',
@@ -85,10 +90,21 @@
       navigationBarTitleText: 'PLAYER'
     }
 
+    components = {
+      myTab: Tab,
+    }
+
     data = {
       text: 'player page',
       baseInfo: baseInfo,
-      careerInfo: careerInfo
+      careerInfo: careerInfo,
+      isLike: true,
+    }
+
+    methods = {
+      changeIsLike() {
+        this.isLike = !this.isLike;
+      }
     }
   }
 
@@ -102,7 +118,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    color: #000130;
+    color: #002150;
 
     .img-bg {
       width: 749rpx;
@@ -132,7 +148,14 @@
         .player-name {
           font-size: 15px;
           font-weight: bold;
-          padding:26rpx 0;
+          padding: 36rpx 0;
+
+          i {
+            color: #999;
+          }
+        }
+        .i-like {
+          color: pink !important;
         }
 
         .base-info {
@@ -143,7 +166,7 @@
         .base-info-text {
           width: 370rpx;
           font-size: 13px;
-          padding: 20rpx 0 20rpx 10rpx;
+          padding: 20rpx 0 20rpx 20rpx;
           box-sizing: border-box;
 
           i {
@@ -183,6 +206,7 @@
 
         .play-info {
           margin-top: 40rpx;
+          margin-bottom: 130rpx;
           display: flex;
           flex-direction: column;
 

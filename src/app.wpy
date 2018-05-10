@@ -18,7 +18,8 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/player'
+      'pages/player',
+      'pages/index',
     ],
     window: {
       backgroundTextStyle: 'light',
