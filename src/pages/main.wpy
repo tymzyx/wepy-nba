@@ -1,0 +1,43 @@
+<template>
+  <view>
+    <team wx:if="{{showIndex === '0'}}"/>
+    <player wx:if="{{showIndex === '1'}}"/>
+    <myTab @change.user="changePage"/>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Player from './player'
+  import Team from './team'
+  import Tab from '../components/common/tab'
+
+  class Main extends wepy.page {
+    config = {
+      navigationBarTitleText: 'MAIN'
+    };
+
+    components = {
+      myTab: Tab,
+      player: Player,
+      team: Team
+    };
+
+    data = {
+      showIndex: '0'
+    };
+
+    methods = {
+      changePage(index) {
+        // console.log('index:', index);
+        this.showIndex = index;
+      }
+    }
+  }
+
+  export default Main;
+</script>
+
+<style lang="less">
+
+</style>

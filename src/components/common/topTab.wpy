@@ -1,0 +1,61 @@
+<template>
+  <view class="top-tab-wrapper">
+    <repeat for="{{[1,2]}}" key="index" index="index" item="item">
+      <view class="tab-item">
+        <view class="tab-text-wrapper {{isActive === index ? 'tab-text-wrapper-active' : ''}}" id="{{index}}" @tap="change">
+          <text>test</text>
+        </view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  class TopTab extends wepy.component {
+    data = {
+      isActive: 0
+    };
+
+    methods = {
+      change(event) {
+        this.isActive = parseInt(event.currentTarget.id);
+        this.$emit('change', event.currentTarget.id);
+      }
+    }
+  }
+
+  export default TopTab;
+</script>
+
+<style lang="less">
+  .top-tab-wrapper {
+    height: 80rpx;
+    background: #0086b3;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+
+    .tab-item {
+      flex: 1;
+      height: 80rpx;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .tab-text-wrapper {
+      height: 78rpx;
+      line-height: 78rpx;
+      color: #ccc;
+    }
+    .tab-text-wrapper-active {
+      border-bottom: 1rpx solid #fff;
+      color: #fff;
+    }
+  }
+</style>

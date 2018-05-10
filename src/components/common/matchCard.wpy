@@ -1,0 +1,122 @@
+<template>
+  <view class="card-wrapper">
+    <view class="card-date">
+      <text>今天 5月10日 星期四</text>
+    </view>
+    <view class="main-wrapper">
+      <view class="card-item-wrapper">
+        <view class="time-wrapper">
+          <text class="time-text">08:00</text>
+          <text>NBA季后赛</text>
+        </view>
+        <view class="teams-wrapper">
+          <view class="team-label">
+            <image src="../../assets/img/rocket.png" class="team-img" mode="aspectFit"/>
+            <text>火箭</text>
+          </view>
+          <view class="team-label">
+            <image src="../../assets/img/warrior.png" class="team-img" mode="aspectFit"/>
+            <text>勇士</text>
+          </view>
+        </view>
+        <view class="res-wrapper">
+          <text>112</text>
+          <text>114</text>
+        </view>
+        <view class="detail-wrapper">
+          <view>
+            <i class="iconfont icon-2xuanzhong"></i>
+            <text>查看详情</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  class MatchCard extends wepy.component {
+
+  }
+
+  export default MatchCard;
+</script>
+
+<style lang="less">
+  .card-wrapper {
+    .card-date {
+      font-size: 12px;
+      padding: 18rpx 0 18rpx 20rpx;
+    }
+
+    .main-wrapper {
+      background: #fff;
+
+      .card-item-wrapper {
+        display: flex;
+        align-items: center;
+        height: 160rpx;
+        /*border: 1px solid #a71d5d;*/
+
+        .time-wrapper, .teams-wrapper, .res-wrapper, .detail-wrapper {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+        .time-wrapper {
+          font-size: 11px;
+          color: #aaa;
+          padding: 0 40rpx 0 20rpx;
+        }
+        .time-text {
+          color: #000;
+          font-size: 13px;
+          margin-bottom: 14rpx;
+        }
+        .teams-wrapper {
+          flex: 1;
+
+          .team-label {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            padding: 4rpx 0;
+
+            text {
+              margin-left: 24rpx;
+            }
+          }
+        }
+        .res-wrapper {
+          padding-right: 40rpx;
+
+          text {
+            font-weight: bold;
+            padding: 16rpx 0;
+          }
+        }
+        .detail-wrapper {
+          font-size: 11px;
+          color: #aaa;
+          padding: 0 20rpx 0 0;
+
+          view {
+            display: flex;
+            align-items: center;
+          }
+          text {
+            margin-left: 12rpx;
+          }
+        }
+
+        .team-img {
+          width: 60rpx;
+          height: 60rpx;
+          border-radius: 30rpx;
+        }
+      }
+    }
+  }
+</style>

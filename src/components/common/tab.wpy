@@ -27,16 +27,9 @@
 
     methods = {
       changePage(index) {
-        console.log('index: ', index);
+        // console.log('index: ', index);
         this.isActive = parseInt(index);
-        switch (index) {
-          case '0':
-            this.$root.$navigate({url: 'player'});
-            break;
-          case '1':
-            this.$root.$navigate({url: 'index'});
-            break;
-        }
+        this.$emit('change', index);
       }
     };
 

@@ -1,0 +1,57 @@
+<template>
+  <view class="agenda-wrapper" animation="{{syncAnimation}}">
+    <repeat for="{{[1,2,3,4,5]}}" key="index" index="index" item="item">
+      <matchCard />
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import MatchCard from '../common/matchCard'
+
+  class TeamAgenda extends wepy.component {
+    components = {
+      matchCard: MatchCard
+    };
+
+    props = {
+      syncAnimation: {
+        default: ''
+      }
+    };
+
+    data = {
+      animation: '',
+      animationData: '',
+    };
+
+    onLoad() {
+      this.animation = wx.createAnimation({
+        transformOrigin: "0% 0%",
+        duration: 500,
+        timingFunction: "ease-in",
+        delay: 0
+      });
+    }
+
+    methods = {
+      testAnimation() {
+        console.log('animation: ', this.animation);
+        this.animation.translateX('-100%').step();
+        this.animationData = this.animation.export();
+      }
+    }
+  }
+
+  export default TeamAgenda;
+</script>
+
+<style lang="less">
+  .agenda-wrapper {
+    padding: 80rpx 0 120rpx;
+    position: absolute;
+    top: 0;
+    width: 750rpx;
+  }
+</style>

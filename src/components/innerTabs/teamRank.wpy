@@ -1,0 +1,31 @@
+<template>
+  <view class="team-rank-wrapper" animation="{{syncAnimation}}">
+    <text>i am rank</text>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  class TeamRank extends wepy.component {
+    props = {
+      syncAnimation: {
+        default: ''
+      }
+    };
+  }
+
+  export default TeamRank;
+</script>
+
+<style lang="less">
+  .team-rank-wrapper {
+    display: flex;
+    height: 800rpx;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    width: 750rpx;
+    transform: translateX(100%);
+  }
+</style>

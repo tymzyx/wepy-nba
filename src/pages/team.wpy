@@ -1,0 +1,70 @@
+<template>
+  <view class="team-wrapper">
+    <myTab @change.user="changeTab"/>
+    <teamAgenda :syncAnimation.sync="animationDataLeft"/>
+    <teamRank :syncAnimation.sync="animationDataRight"/>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import TopBar from '../components/common/topTab'
+  import TeamAgenda from '../components/innerTabs/teamAgenda'
+  import TeamRank from '../components/innerTabs/teamRank'
+
+  class Team extends wepy.component {
+    config = {
+      navigationBarTitleText: 'TEAM'
+    };
+
+    components = {
+      myTab: TopBar,
+      teamAgenda: TeamAgenda,
+      teamRank: TeamRank
+    };
+
+    data = {
+      activeIndex: '0',
+      animation: '',
+      animationDataLeft: '',
+      animationDataRight: '',
+    };
+
+    methods = {
+      changeTab(index) {
+        // console.log('index: ', index);
+        this.activeIndex = index;
+        if (index === '1') {
+          this.animation.translateX('-100%').step();
+          this.animationDataLeft = this.animation.export();
+
+          this.animation.translateX('0%').step();
+          this.animationDataRight = this.animation.export();
+        } else if (index === '0') {
+          this.animation.translateX('0%').step();
+          this.animationDataLeft = this.animation.export();
+
+          this.animation.translateX('100%').step();
+          this.animationDataRight = this.animation.export();
+        }
+      }
+    };
+
+    onLoad() {
+      this.animation = wx.createAnimation({
+        transformOrigin: "0% 0%",
+        duration: 300,
+        timingFunction: "linear",
+        delay: 0
+      });
+    }
+  }
+
+  export default Team;
+</script>
+
+<style lang="less">
+  .team-wrapper {
+    background: #eee;
+  }
+</style>
