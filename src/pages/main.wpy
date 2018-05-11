@@ -2,6 +2,7 @@
   <view>
     <team wx:if="{{showIndex === '0'}}"/>
     <player wx:if="{{showIndex === '1'}}"/>
+    <mine wx:if="{{showIndex === '2'}}" />
     <myTab @change.user="changePage"/>
   </view>
 </template>
@@ -10,6 +11,7 @@
   import wepy from 'wepy'
   import Player from './player'
   import Team from './team'
+  import Mine from './mine'
   import Tab from '../components/common/tab'
 
   class Main extends wepy.page {
@@ -20,7 +22,8 @@
     components = {
       myTab: Tab,
       player: Player,
-      team: Team
+      team: Team,
+      mine: Mine
     };
 
     data = {

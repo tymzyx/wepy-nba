@@ -1,8 +1,10 @@
 <template>
   <view class="agenda-wrapper" animation="{{syncAnimation}}">
-    <repeat for="{{[1,2,3,4,5]}}" key="index" index="index" item="item">
+    <!--<scroll-view scroll-y="true" style="height: 603px" @bindscrolltolower="lower" @bindscroll="scroll">-->
+    <repeat for="{{fake}}" key="index" index="index" item="item">
       <matchCard />
     </repeat>
+    <!--</scroll-view>-->
   </view>
 </template>
 
@@ -24,6 +26,8 @@
     data = {
       animation: '',
       animationData: '',
+      fake: [1,2,3,4,5],
+      height: ''
     };
 
     onLoad() {
@@ -33,6 +37,14 @@
         timingFunction: "ease-in",
         delay: 0
       });
+
+      let _this = this;
+      wx.getSystemInfo({
+        success: (res) => {
+          _this.height = res.windowHeight;
+          console.log('height: ', _this.height);
+        }
+      });
     }
 
     methods = {
@@ -40,6 +52,34 @@
         console.log('animation: ', this.animation);
         this.animation.translateX('-100%').step();
         this.animationData = this.animation.export();
+      },
+
+      scroll() {
+        console.log('i am scroll');
+      },
+
+      lower() {
+        console.log('???----')
+        let add = [2,3,4];
+        let res = this.fake;
+        let cont = res.concat(add);
+        if (cont.length >= 50) {
+          wx.showToast({
+            title: '我也是有底线的',
+            icon: 'success',
+            duration: 300
+          });
+          return false;
+        } else {
+          wx.showLoading({
+            title: '加载中',
+            icon: 'loading',
+          });
+          setTimeout(() => {
+            this.fake = cont;
+            wx.hideLoading();
+          }, 1500)
+        }
       }
     }
   }

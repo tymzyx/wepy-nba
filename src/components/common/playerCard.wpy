@@ -1,0 +1,78 @@
+<template>
+  <view class="player-card-wrapper" data-playerId="333" @tap="toPlayerDetail">
+    <text class="rank-text">1</text>
+    <view class="player-info">
+      <image src="../../assets/img/hd.png" mode="aspectFill" class="avatar-img"/>
+      <view>
+        <text class="name">哈登</text>
+        <text class="team">火箭</text>
+      </view>
+    </view>
+    <view class="rank-count">
+      <text>30.4</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  class PlayerCard extends wepy.component {
+
+    methods = {
+      toPlayerDetail(event) {
+        console.log('playerId: ', event.currentTarget.dataset.playerid);
+        this.$root.$navigate({url: 'playerDetail?playerId=' + event.currentTarget.dataset.playerid});
+      }
+    }
+  }
+
+  export default PlayerCard;
+</script>
+
+<style lang="less">
+  .player-card-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100rpx;
+    border-bottom: 1px solid #eee;
+
+    .rank-text {
+      padding: 0 34rpx 0 30rpx;
+      font-size: 13px;
+    }
+    .player-info {
+      flex: 1;
+      display: flex;
+      align-items: center;
+
+      .avatar-img {
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 40rpx;
+        margin-right: 24rpx;
+      }
+
+      view {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .name {
+          font-size: 13px;
+          margin-bottom: 4rpx;
+        }
+        .team {
+          font-size: 11px;
+          color: #888;
+        }
+      }
+    }
+    .rank-count {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 0 30rpx;
+    }
+  }
+</style>

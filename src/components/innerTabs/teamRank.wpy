@@ -1,13 +1,18 @@
 <template>
   <view class="team-rank-wrapper" animation="{{syncAnimation}}">
-    <text>i am rank</text>
+    <playerCard />
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import PlayerCard from '../common/playerCard'
 
   class TeamRank extends wepy.component {
+    components = {
+      playerCard: PlayerCard
+    };
+
     props = {
       syncAnimation: {
         default: ''
@@ -20,9 +25,7 @@
 
 <style lang="less">
   .team-rank-wrapper {
-    display: flex;
-    height: 800rpx;
-    align-items: center;
+    padding: 80rpx 0 120rpx;
     position: absolute;
     top: 0;
     width: 750rpx;

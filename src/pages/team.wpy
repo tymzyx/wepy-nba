@@ -1,6 +1,6 @@
 <template>
   <view class="team-wrapper">
-    <myTab @change.user="changeTab"/>
+    <topTab :items="items" @change.user="changeTab"/>
     <teamAgenda :syncAnimation.sync="animationDataLeft"/>
     <teamRank :syncAnimation.sync="animationDataRight"/>
   </view>
@@ -18,7 +18,7 @@
     };
 
     components = {
-      myTab: TopBar,
+      topTab: TopBar,
       teamAgenda: TeamAgenda,
       teamRank: TeamRank
     };
@@ -28,6 +28,10 @@
       animation: '',
       animationDataLeft: '',
       animationDataRight: '',
+      items: [
+        {text: '赛程'},
+        {text: '球队排名'}
+      ]
     };
 
     methods = {
