@@ -3,7 +3,14 @@
     <topTab :items="items" @change.user="changeTab"/>
     <view class="main">
       <repeat for="{{ranks}}" key="index" index="index" item="item">
-        <playerCard :name="item.name" :team="item.team" :count="item.data" :rank="index+1" :avatar="item.avatar"/>
+        <playerCard
+          :name="item.name"
+          :team="item.team"
+          :count="item.data"
+          :rank="index+1"
+          :avatar="item.avatar"
+          :playerId="item.id"
+        />
       </repeat>
     </view>
   </view>
@@ -43,7 +50,7 @@
           _this.ranks = res.data;
           _this.$apply();
         }
-      })
+      });
     };
 
     methods = {

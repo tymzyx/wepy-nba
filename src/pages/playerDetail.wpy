@@ -1,11 +1,11 @@
 <template>
   <view class="player-detail-wrapper">
-    <image class="img-bg" src="../assets/img/bg.jpg" background-size="cover"/>
+    <image class="img-bg" src="../assets/img/bg1.jpg" background-size="cover"/>
     <view class="player-main">
-      <image class="img-avatar" src="../assets/img/od.png" mode="aspectFill"/>
+      <image class="img-avatar" src="{{baseInfo.avatar}}" mode="aspectFill"/>
       <view class="player-info-wrapper">
         <view class="player-name">
-          <text>维克多·奥拉迪波 </text>
+          <text>{{baseInfo.name}} </text>
           <i class="iconfont icon-xihuan {{isLike ? 'i-like' : ''}}" @tap="changeIsLike"></i>
         </view>
         <view class="base-info">
@@ -69,12 +69,14 @@
   import wepy from 'wepy'
 
   let baseInfo = {
+    name: '维克多·奥拉迪波',
     country: '美国',
     height: '1.93米',
     birth: '1992年5月4日',
     weight: '95公斤',
     nickName: '奥迪',
     age: '26',
+    avatar: '../assets/img/od.png'
   };
   let careerInfo = [
     {text: '得分', count: '17.4'},
@@ -93,6 +95,33 @@
       baseInfo: baseInfo,
       careerInfo: careerInfo,
       isLike: true,
+    };
+
+    onLoad(query) {
+      let _this = this;
+      wx.request({
+        url: 'http://localhost:3322/api/v1/player?playerId=' + query.playerId,
+        success: (res) => {
+          let career = res.data.career.avg.career;
+          _this.baseInfo = {
+            name: res.data.name,
+            country: '美国',
+            height: res.data.height + '米',
+            birth: res.data.bornDate,
+            weight: res.data.weight + '公斤',
+            nickName: '奥迪',
+            age: '26',
+            avatar: res.data.avatar
+          };
+          _this.careerInfo = [
+            {text: '得分', count: career.score},
+            {text: '篮板', count: career.rebound},
+            {text: '助攻', count: career.assist},
+            {text: '抢断', count: career.steal}
+          ];
+          _this.$apply();
+        }
+      });
     };
 
     methods = {
@@ -200,7 +229,7 @@
 
         .play-info {
           margin-top: 40rpx;
-          margin-bottom: 130rpx;
+          margin-bottom: 50rpx;
           display: flex;
           flex-direction: column;
 

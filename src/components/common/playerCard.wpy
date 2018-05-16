@@ -1,5 +1,5 @@
 <template>
-  <view class="player-card-wrapper" data-playerId="333" @tap="toPlayerDetail">
+  <view class="player-card-wrapper" data-playerId="{{playerId}}" @tap="toPlayerDetail">
     <text class="rank-text">{{rank}}</text>
     <view class="player-info">
       <image src="{{avatar}}" mode="aspectFill" class="avatar-img"/>
@@ -32,6 +32,9 @@
         default: '',
       },
       avatar: {
+        default: '',
+      },
+      playerId: {
         default: '',
       }
     };
