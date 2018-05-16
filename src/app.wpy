@@ -18,6 +18,7 @@ import 'wepy-async-function'
 export default class extends wepy.app {
   config = {
     pages: [
+      // 'pages/mine',
       'pages/main',
       'pages/playerDetail'
     ],
@@ -25,7 +26,8 @@ export default class extends wepy.app {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+      // enablePullDownRefresh: true
     }
   }
 

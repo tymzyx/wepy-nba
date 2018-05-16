@@ -1,5 +1,5 @@
 <template>
-  <scroll-view scroll-y='true' style="height: 800px; width: 100%" @scrolltolower='lower'>
+  <scroll-view scroll-y='true' style="height: 800px" bindscrolltolower='lower'>
     <repeat for="{{res}}" index="index" item="item" key="index">
       <view style="height:103px;width:100%;text-align:center;line-height:103px; border-bottom:1px solid #ccc">{{index}}</view>
     </repeat>
@@ -9,7 +9,11 @@
 <script>
   import wepy from 'wepy'
 
-  class Mine extends wepy.component {
+  class Mine extends wepy.page {
+    config = {
+      navigationBarTitleText: 'MINE'
+    };
+
     data = {
       height: '',
       res: [0, 1, 2, 3, 4, 5]

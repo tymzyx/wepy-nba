@@ -2,8 +2,8 @@
   <view class="player-wrapper">
     <topTab :items="items" @change.user="changeTab"/>
     <view class="main">
-      <repeat for="{{[1,2,3,4,5,6,7,8,9,10,1,2,23,4,5,6,1,2,4,3]}}" key="index" index="index" item="item">
-        <playerCard />
+      <repeat for="{{ranks}}" key="index" index="index" item="item">
+        <playerCard :name="item.name" :team="item.team" :count="item.data" :rank="index+1" :avatar="item.avatar"/>
       </repeat>
     </view>
   </view>
@@ -27,12 +27,45 @@
         {text: '篮板榜'},
         {text: '抢断榜'},
         {text: '盖帽榜'}
-      ]
+      ],
+      ranks: []
+    };
+
+    onLoad() {
+      this.getRank('score')
+    };
+
+    getRank(type) {
+      let _this = this;
+      wx.request({
+        url: 'http://localhost:3322/api/v1/rank?type=' + type,
+        success: (res) => {
+          _this.ranks = res.data;
+          _this.$apply();
+        }
+      })
     };
 
     methods = {
       changeTab(index) {
-        console.log('index: ', index);
+        console.log('index:', index);
+        switch (index) {
+          case '0':
+            this.getRank('score');
+            break;
+          case '1':
+            this.getRank('assist');
+            break;
+          case '2':
+            this.getRank('rebound');
+            break;
+          case '3':
+            this.getRank('steal');
+            break;
+          case '4':
+            this.getRank('block');
+            break;
+        }
       }
     }
   }

@@ -1,15 +1,15 @@
 <template>
   <view class="player-card-wrapper" data-playerId="333" @tap="toPlayerDetail">
-    <text class="rank-text">1</text>
+    <text class="rank-text">{{rank}}</text>
     <view class="player-info">
-      <image src="../../assets/img/hd.png" mode="aspectFill" class="avatar-img"/>
+      <image src="{{avatar}}" mode="aspectFill" class="avatar-img"/>
       <view>
-        <text class="name">哈登</text>
-        <text class="team">火箭</text>
+        <text class="name">{{name}}</text>
+        <text class="team">{{team}}</text>
       </view>
     </view>
     <view class="rank-count">
-      <text>30.4</text>
+      <text>{{count}}</text>
     </view>
   </view>
 </template>
@@ -18,6 +18,23 @@
   import wepy from 'wepy'
 
   class PlayerCard extends wepy.component {
+    props = {
+      rank: {
+        default: '',
+      },
+      name: {
+        default: '',
+      },
+      team: {
+        default: '',
+      },
+      count: {
+        default: '',
+      },
+      avatar: {
+        default: '',
+      }
+    };
 
     methods = {
       toPlayerDetail(event) {
@@ -70,7 +87,7 @@
       }
     }
     .rank-count {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       padding: 0 30rpx;
     }

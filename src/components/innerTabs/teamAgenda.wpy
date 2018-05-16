@@ -1,7 +1,7 @@
 <template>
   <view class="agenda-wrapper" animation="{{syncAnimation}}">
     <!--<scroll-view scroll-y="true" style="height: 603px" @bindscrolltolower="lower" @bindscroll="scroll">-->
-    <repeat for="{{fake}}" key="index" index="index" item="item">
+    <repeat for="{{syncFake}}" key="index" index="index" item="item">
       <matchCard />
     </repeat>
     <!--</scroll-view>-->
@@ -20,7 +20,10 @@
     props = {
       syncAnimation: {
         default: ''
-      }
+      },
+      syncFake: {
+        default: []
+      },
     };
 
     data = {
@@ -59,7 +62,7 @@
       },
 
       lower() {
-        console.log('???----')
+        console.log('???----');
         let add = [2,3,4];
         let res = this.fake;
         let cont = res.concat(add);

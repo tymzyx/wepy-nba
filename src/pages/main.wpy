@@ -1,8 +1,8 @@
 <template>
   <view>
-    <team wx:if="{{showIndex === '0'}}"/>
+    <team wx:if="{{showIndex === '0'}}" :syncFake.sync="fake"/>
     <player wx:if="{{showIndex === '1'}}"/>
-    <mine wx:if="{{showIndex === '2'}}" />
+    <!--<mine wx:if="{{showIndex === '2'}}" />-->
     <myTab @change.user="changePage"/>
   </view>
 </template>
@@ -11,7 +11,7 @@
   import wepy from 'wepy'
   import Player from './player'
   import Team from './team'
-  import Mine from './mine'
+  // import Mine from './mine'
   import Tab from '../components/common/tab'
 
   class Main extends wepy.page {
@@ -23,11 +23,12 @@
       myTab: Tab,
       player: Player,
       team: Team,
-      mine: Mine
+      // mine: Mine
     };
 
     data = {
-      showIndex: '0'
+      showIndex: '0',
+      fake: [1,2,3,4,5,6,7]  // 赛程页面假数据
     };
 
     methods = {
@@ -35,7 +36,58 @@
         // console.log('index:', index);
         this.showIndex = index;
       }
-    }
+    };
+
+    // onPageScroll() {
+    //   if (this.showIndex !== '0') {
+    //     return;
+    //   }
+    //   console.log('i am scroll');
+    // }
+
+    // onPullDownRefresh() {
+    //   if (this.showIndex !== '0') {
+    //     return;
+    //   }
+    //   console.log('i am pullDown');
+    //
+    //   let add = [2,3,4];
+    //   let res = this.fake;
+    //   let cont = res.concat(add);
+    //   this.fake = cont;
+    //
+    //   wx.pageScrollTo({
+    //     scrollTop: 100
+    //   });
+    // }
+
+    // onReachBottom() {
+    //   if (this.showIndex !== '0') {
+    //     return;
+    //   }
+    //   console.log('i am reach bottom');
+    //   let add = [2,3,4];
+    //   let res = this.fake;
+    //   let cont = res.concat(add);
+    //   this.fake = cont;
+    //   // if (cont.length >= 50) {
+    //   //   wx.showToast({
+    //   //     title: '我也是有底线的',
+    //   //     icon: 'success',
+    //   //     duration: 300
+    //   //   });
+    //   //   return false;
+    //   // } else {
+    //   //   wx.showLoading({
+    //   //     title: '加载中',
+    //   //     icon: 'loading',
+    //   //   });
+    //   //   setTimeout(() => {
+    //   //     wx.hideLoading();
+    //   //     this.fake = cont;
+    //   //   }, 1000)
+    //   // }
+    // }
   }
 
   export default Main;
